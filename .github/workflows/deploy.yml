@@ -1,0 +1,26 @@
+name: Execute High-Yield Word Cannon Factory
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Seize Repository Code
+        uses: actions/checkout@v4
+
+      - name: Initialize Node.js Processing Capacitor
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Execute Word-Calculation Matrix Generator
+        run: node generator.js
+
+      - name: Stream Generated Partitions to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public_html
