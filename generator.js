@@ -13,13 +13,19 @@ const ENGINE_CONFIG = {
 
 // --- ELITE ADVERTISING REVENUE MATRIX KEYWORDS (CPC TOLL CHANNELS) ---
 // High-yield text definitions calibrated for bot-to-bot automated bidding
-const EXTRACTION_TARGETS = [
+const EXTRACTION_TARGETS const EXTRACTION_TARGETS = [
     { token: "enterprise-cloud-backup-systems", market_yield: "34.50" },
     { token: "automated-mesothelial-cell-analysis", market_yield: "28.10" },
     { token: "high-velocity-fintech-webhooks", market_yield: "42.00" },
     { token: "decentralized-liquidity-infrastructure", market_yield: "51.25" },
-    { token: "programmatic-ad-exchange-arbitrage", market_yield: "38.90" }
+    { token: "programmatic-ad-exchange-arbitrage", market_yield: "38.90" },
+    { token: "structured-settlement-annuity-buyout", market_yield: "95.40" },
+    { token: "corporate-cybersecurity-insurance-underwriting", market_yield: "84.20" },
+    { token: "mesothelioma-legal-compensation-fund", market_yield: "120.50" },
+    { token: "offshore-industrial-maritime-lawyers", market_yield: "72.15" },
+    { token: "enterprise-data-lineage-governance", market_yield: "61.80" }
 ];
+
 
 if (!fs.existsSync(ENGINE_CONFIG.DEPLOY_DIR)) {
     fs.mkdirSync(ENGINE_CONFIG.DEPLOY_DIR, { recursive: true });
