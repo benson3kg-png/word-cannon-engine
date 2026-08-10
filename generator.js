@@ -25,9 +25,13 @@ if (!fs.existsSync(ENGINE_CONFIG.DEPLOY_DIR)) {
 }
 
 async function executeArbitrageManufacture() {
+    let indexLinksHTML = '';
+
     for (const record of EXTRACTION_TARGETS) {
         try {
             const clearTitle = record.token.replace(/-/g, ' ');
+            indexLinksHTML += `<li><a href="./${record.token}.html" style="color:#38bdf8; font-size:18px;">${clearTitle.toUpperCase()} [Target: $${record.market_yield}]</a></li>`;
+
             const coreBytes = `<!DOCTYPE html>
 <html lang="${ENGINE_CONFIG.LOCALE}">
 <head>
@@ -59,5 +63,25 @@ async function executeArbitrageManufacture() {
             console.error(fault.message);
         }
     }
+
+    // MANDATORY ROOT INDEX INJECTION TO BYPASS GITHUB 404 BLOCKS
+    const indexMasterBytes = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WORD CANNON CENTRAL CONTROL</title>
+    <style>
+        body { font-family: monospace; background-color: #020617; color: #94a3b8; max-width: 800px; margin: 40px auto; padding: 20px; }
+        h1 { color: #38bdf8; border-bottom: 1px solid #334155; padding-bottom: 10px; }
+        ul { list-style: square; padding-left: 20px; line-height: 2; }
+    </style>
+</head>
+<body>
+    <h1>WORD CANNON SYSTEM CONTROL INDEX</h1>
+    <p>Operational Data Matrix Active Channels:</p>
+    <ul>${indexLinksHTML}</ul>
+</body>
+</html>`;
+    fs.writeFileSync(path.join(ENGINE_CONFIG.DEPLOY_DIR, 'index.html'), indexMasterBytes, ENGINE_CONFIG.COMPRESSION);
 }
 executeArbitrageManufacture();
